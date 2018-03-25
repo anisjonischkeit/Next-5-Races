@@ -1,4 +1,5 @@
 flask
+flask_cors
 faker
 iso8601
 graphene
