@@ -6,7 +6,7 @@ from graphql_schema import schema
 app = Flask(__name__)
 
 app.add_url_rule(
-    '/api/v1/races/graphql',
+    '/graphql',
     view_func=GraphQLView.as_view(
         'graphql',
         schema=schema,
