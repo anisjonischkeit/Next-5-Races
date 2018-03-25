@@ -2,5 +2,7 @@ version: '2'
 services:
   server:
     build: ./server
+    volumes:
+     - ./server/src:/usr/src/app/src
     ports:
      - "8001:8001"
