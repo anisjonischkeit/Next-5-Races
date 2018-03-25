@@ -9,9 +9,9 @@ race_list = [
 ]
 
 class Query(graphene.ObjectType):
-		races = graphene.List(Race)
+		races = graphene.List(Race, limit=graphene.Int())
 
-		def resolve_races(self, info):
-				return race_list
+		def resolve_races(self, info, limit):
+				return sorted(race_list, key=lambda x: x.closing_time)[:limit]
 
 schema = graphene.Schema(query=Query)
