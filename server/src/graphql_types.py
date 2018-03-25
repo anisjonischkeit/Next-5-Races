@@ -8,5 +8,5 @@ class Competitor(graphene.ObjectType):
 class Race(graphene.ObjectType):
 		id = graphene.String()
 		closing_time = DateTime()
-		dog_type = graphene.String()
+		type = graphene.String()
 		competitors = graphene.List(Competitor)

@@ -29,4 +29,4 @@ def create_fake_race():
 		# generate a random race uuid
 		id = str(uuid4())
 
-		return Race(id=id, closing_time=closing_time, dog_type=dog_type, competitors=create_fake_competitors())
+		return Race(id=id, closing_time=closing_time, type=dog_type, competitors=create_fake_competitors())
