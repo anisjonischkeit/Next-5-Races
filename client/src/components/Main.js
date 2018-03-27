@@ -1,53 +1,23 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { getRaces } from './api'
+import { getRaces } from '../api'
 
 import RaceItem from './RaceItem'
-import { api_root } from './config'
+import { api_root } from '../config'
+import { getRaceWithTimeUntil } from "../utils"
 
-import countdown from 'countdown'
+import { Application, RacesContainer, Title } from './styled-elements'
 
 const racesBuffer = 20
 
-const Application = styled.div`
-  font-family: sans-serif
-  color: white
-`
-
-const RacesContainer = styled.div`
-  width: 80%;
-  padding: 0 10%;
-`
-
-const Title = styled.h1`
-  text-align: center
-  padding: 40px 0
-`
-
-
-
 const racesWithTimeUntil = races => (
-  races.map((race) => {
-    const closingTime = new Date(race.closingTime)
-    const countdownTimeSpan = countdown(closingTime)
-
-    if (countdownTimeSpan.value >= -500) {
-      return null
-    } else {
-      // dont manipulate the state
-      const newRace = { ...race }
-
-      newRace["timeUntil"] = countdownTimeSpan.toString()
-      return newRace
-    }
-  }).filter(race => race !== null)
+  races.map(getRaceWithTimeUntil).filter(race => race !== null)
 )
 
 class App extends Component {
   state = {
     initialFetchState: "loading",
-    races: [],
-    timeTillRaces: []
+    races: []
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -85,7 +55,12 @@ class App extends Component {
           { initialFetchState === "loading" && <p>loading</p> }
           { initialFetchState === "success" &&
               races.slice(0, 5).map(race => (
-                <RaceItem key={race.id} closingTime={race.timeUntil} title={race.meeting.name}/>
+                <RaceItem
+                  key={race.id} 
+                  closingTime={race.timeUntil} 
+                  title={race.meeting.name}
+                  link={`/races/${race.id}`}
+                />
               ))
           }
         </RacesContainer>
