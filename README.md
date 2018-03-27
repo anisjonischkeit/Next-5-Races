@@ -46,10 +46,6 @@ to restart docker before running the app
 sudo systemctl restart docker
 ```
 
-#### On windows
-
-right click on the docker icon in your task bar and click restart
-
-#### On Mac
+#### On Windows and Mac
 
 right click on the docker icon in your task bar and click restart
