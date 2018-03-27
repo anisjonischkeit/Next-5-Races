@@ -1,5 +1,14 @@
 import { api_root } from './config'
 
+const onSuccessGetJson = (res) => {
+  if (res.ok) {
+    return res.json()
+  } else {
+    alert("Failed to fetch, make sure the server is running")
+    throw Error("Failed to fetch, make sure the server is running")
+  }
+}
+
 export const getRaces = async (limit) => {
   const body = new FormData()
     body.append("query", `
@@ -19,7 +28,7 @@ export const getRaces = async (limit) => {
       method: "POST",
       body: body,
       mode: "cors"
-    }).then(res => res.json())
+    }).then(onSuccessGetJson)
 
     return jsData.data.races
 }
@@ -47,7 +56,7 @@ export const getRace = async (id) => {
       method: "POST",
       body: body,
       mode: "cors"
-    }).then(res => res.json())
+    }).then(onSuccessGetJson)
 
     return jsData.data.race
 }
