@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const RowContainer = styled.div`
 	display: flex
 	&:hover {
-		background: palevioletred;
+		background: #133e3c;
 		cursor: pointer;
   }
 `;
@@ -12,11 +12,18 @@ const RowContainer = styled.div`
 const RowItem = styled.div`
 	padding: 10px
 	flex: 1
+	border-style: solid
+	border-width: 1px
 `;
 
-export default ({closingTime, type}) => (
-	<RowContainer>
-		<RowItem>{type}</RowItem>
-		<RowItem>{closingTime}</RowItem>
-	</RowContainer>
-)
+export default ({backgroundColor, closingTime, type}) => {
+	const ColoredRowContainer = RowContainer.extend`
+		background: ${backgroundColor}
+	`
+	return (
+		<ColoredRowContainer>
+			<RowItem>{type}</RowItem>
+			<RowItem>{closingTime}</RowItem>
+		</ColoredRowContainer>
+	)
+}

@@ -9,13 +9,22 @@ import countdown from 'countdown'
 
 const racesBuffer = 20
 
+const Application = styled.div`
+  font-family: sans-serif
+  color: white
+`
+
 const RacesContainer = styled.div`
   width: 80%;
-  margin: 8%;
-  padding: 2%;
-  border-style: solid;
-  border-width: 1px;
+  padding: 0 10%;
 `
+
+const Title = styled.h1`
+  text-align: center
+  padding: 40px 0
+`
+
+
 
 const racesWithTimeUntil = races => (
   races.map(race => {
@@ -73,16 +82,17 @@ class App extends Component {
   render() {
     const { races, initialFetchState } = this.state
     return (
-      <div>
+      <Application>
+        <Title>Next 5 Races</Title>
         <RacesContainer>
           { initialFetchState === "loading" && <p>loading</p> }
           { initialFetchState === "success" &&
-              races.slice(0, 4).map(race => (
-                <RaceItem key={race.id} closingTime={race.timeUntil} type={race.id} />
+              races.slice(0, 5).map(race => (
+                <RaceItem key={race.id} closingTime={race.timeUntil} type={race.id}/>
               ))
           }
         </RacesContainer>
-      </div>
+      </Application>
     );
   }
 }
