@@ -18,13 +18,13 @@ class App extends Component {
     races: []
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.initialFetchState === "success" && this.state.races.length <= racesBuffer/2) {
       this.getLatestRaces()
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getLatestRaces()
 
     setInterval(() => {
