@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { getRaces } from '../api'
 
 import RaceItem from './RaceItem'
-import { api_root } from '../config'
 import { getRaceWithTimeUntil } from "../utils"
 
 import { Application, RacesContainer, Title } from './styled-elements'

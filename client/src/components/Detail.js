@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { getRace } from '../api'
 
-import RaceItem from './RaceItem'
-import { api_root } from '../config'
-import { getRaceWithTimeUntil } from '../utils'
 import Page404 from './404'
 
 import { 
 	Application, RacesContainer, Title, SubTitle, Para, 
-	Table, TableData, TableHeading, BackButton
+	Table, TableData, BackButton
 } from './styled-elements'
 
 import countdown from 'countdown'
-
-const racesBuffer = 20
-
-
 
 class App extends Component {
   state = {
@@ -42,14 +35,14 @@ class App extends Component {
 
 			// Set up initial countdown value
 			const countD = countdown(new Date(race.closingTime))
-			{
-				return {
-					...state,
-					timeUntilRace: (countD.value < -500 ? countD.toString() : null),
-					race: race,
-					fetchState: "success"
-				}
+		
+			return {
+				...state,
+				timeUntilRace: (countD.value < -500 ? countD.toString() : null),
+				race: race,
+				fetchState: "success"
 			}
+			
 		})
 
 		// make countdown recalculate every second

@@ -33,11 +33,7 @@ export const TableData = styled.td`
 	width: 50%
 	padding: 7px 15px
 `
-export const TableHeading = styled.td`
-	border-style: solid
-	width: 50%
-	padding: 0 15px
-`
+
 
 export const BackButton = styled.a`
 	color: inherit;
