@@ -4,3 +4,4 @@ faker
 iso8601
 graphene
 flask_graphql
+pytz
