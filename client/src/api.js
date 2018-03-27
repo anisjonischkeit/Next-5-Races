@@ -8,6 +8,9 @@ export const getRaces = async (limit) => {
           id
           closingTime
           type
+          meeting {
+            name
+          }
         }
       }
     `)

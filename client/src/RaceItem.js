@@ -16,14 +16,11 @@ const RowItem = styled.div`
 	border-width: 1px
 `;
 
-export default ({backgroundColor, closingTime, type}) => {
-	const ColoredRowContainer = RowContainer.extend`
-		background: ${backgroundColor}
-	`
+export default ({closingTime, title}) => {
 	return (
-		<ColoredRowContainer>
-			<RowItem>{type}</RowItem>
+		<RowContainer>
+			<RowItem>{title}</RowItem>
 			<RowItem>{closingTime}</RowItem>
-		</ColoredRowContainer>
+		</RowContainer>
 	)
 }

@@ -27,15 +27,12 @@ const Title = styled.h1`
 
 
 const racesWithTimeUntil = races => (
-  races.map(race => {
+  races.map((race) => {
     const closingTime = new Date(race.closingTime)
     const countdownTimeSpan = countdown(closingTime)
 
-    // base whether to remove row on the countdown to make sure
-    // that the countdown doesn't end before the item is removed
-    if (Date.now() > countdownTimeSpan) {
+    if (countdownTimeSpan.value >= -500) {
       return null
-
     } else {
       // dont manipulate the state
       const newRace = { ...race }
@@ -54,7 +51,7 @@ class App extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (this.state.races.length <= racesBuffer/2) {
+    if (this.state.initialFetchState === "success" && this.state.races.length <= racesBuffer/2) {
       this.getLatestRaces()
     }
   }
@@ -88,7 +85,7 @@ class App extends Component {
           { initialFetchState === "loading" && <p>loading</p> }
           { initialFetchState === "success" &&
               races.slice(0, 5).map(race => (
-                <RaceItem key={race.id} closingTime={race.timeUntil} type={race.id}/>
+                <RaceItem key={race.id} closingTime={race.timeUntil} title={race.meeting.name}/>
               ))
           }
         </RacesContainer>
